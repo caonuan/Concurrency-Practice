@@ -1,8 +1,7 @@
 package volatileTest;
 
 /**
- * 验证long和double在多线程中没有最低安全性。 这份代码时网上的，是错误的代码。可能出现1！=-1&&-1！=1
- * 
+ * 验证long和double在多线程中没有最低安全性。 这份代码是网上的，是错误的代码。可能出现1！=-1&&-1！=1
  * @author Caonuan
  *
  */
@@ -20,6 +19,7 @@ public class VolatileLongDoubleTest2 {
 		w1.start();
 		w2.start();
 		while (true) {
+			//可能出现1！=-1&&-1！=1
 			if (t.l != -1l && t.l != 1l) {
 				System.out.println(toBinary(t.l));
 				System.out.println("l的写不是原子操作");
