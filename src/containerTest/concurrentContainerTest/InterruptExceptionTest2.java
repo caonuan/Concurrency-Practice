@@ -1,4 +1,4 @@
-package concurrentContainerTest;
+package containerTest.concurrentContainerTest;
 
 /**
  * 测试单独调用一个interrupt()方法的作用
