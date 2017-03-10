@@ -8,8 +8,8 @@ import java.util.Vector;
  * 集合捕获ConcurrentModificationException异常
  * 容器在迭代过程中如果不考虑并发修改（即在迭代过程中容器内容被删除或增加），表现出的行为为ConcurrentModificationException异常
  * ConcurrentModificationException是“善意的提醒”，remove()语句最终将会被成功执行。\n
- * Vector的快速失败不同于HashMap。
- * 
+ * Vector的快速失败不同于HashMap，原因在于next()和hasNext()的判断机制不一样。看源码（jdk1.7)可以得知。
+ *
  * @author Caonuan
  *
  */
@@ -49,7 +49,7 @@ public class VectorConcurrentModificationExceptionTest {
 		try {
 			Iterator<Integer> it = v.iterator();
 			while (it.hasNext()) {
-				if (it.next() == 4)
+				if (it.next() == 4);
 					v.remove(3);
 			}
 		} catch (ConcurrentModificationException e) {
