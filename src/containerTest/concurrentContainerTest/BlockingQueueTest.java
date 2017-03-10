@@ -17,10 +17,14 @@ public class BlockingQueueTest {
 			public void run() {
 				try {
 					for (;;){
-						bq.put(new Integer(i++));
-						this.sleep(2000);
+						//bq.put(new Integer(i++));
+						bq.offer(new Integer(i++));
+						Thread.currentThread();
+						Thread.sleep(2000);
+						//Thread.sleep(500);
 					}
 				} catch (InterruptedException e) {
+					System.out.println("interruped");
 					Thread.currentThread().interrupt();
 				}
 			}
@@ -31,9 +35,12 @@ public class BlockingQueueTest {
 				try {
 					for (;;) {
 						System.out.println(bq.take());
-						this.sleep(1000);
+						//System.out.println(bq.poll());
+						Thread.currentThread();
+						Thread.sleep(1000);
 					}
 				} catch (InterruptedException e) {
+					System.out.println("interruped");
 					Thread.currentThread().interrupt();
 				}
 			}
