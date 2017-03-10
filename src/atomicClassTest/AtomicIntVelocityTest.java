@@ -4,7 +4,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * 将AtomicInteger的原子自增操作与int变量的synchroinzed自增操作时间比较，看谁比较快
- * 结论：AtomicInteger.incrementAndGet()会比较慢
+ * 结论：AtomicInteger.incrementAndGet()会比synchronized在外面慢，比synchronized在循环里快
+ * 原因：AtomicIngeger.incrementAndGet()实际上是循环执行compareAndSet(expect,newValue)，
+ * 会比每次获取锁再自增快，但compareAndSet()可能失败，所以比一次获取synchronized慢
+ * 
  * @author Caonuan
  *
  */
