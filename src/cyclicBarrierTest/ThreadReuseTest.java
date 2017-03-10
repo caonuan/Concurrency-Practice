@@ -9,11 +9,11 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 /**
- * call（）有参数时的情况   编辑错误
+ * 线程复用
  * @author Caonuan
  *
  */
-public class Test4 {
+public class ThreadReuseTest {
 	static class Worker implements Callable<Integer> {
 		CyclicBarrier barrier;
 		private int i;
