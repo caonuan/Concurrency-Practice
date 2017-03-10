@@ -1,4 +1,4 @@
-package concurrentContainerTest;
+package cyclicBarrierTest;
 
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
@@ -9,7 +9,7 @@ import java.util.concurrent.CyclicBarrier;
  * @author Caonuan
  *
  */
-public class CyclicBarrierTest {
+public class CyclicBarrierInterruptTest {
 	public static void main(String[] args) {
 		final CyclicBarrier b = new CyclicBarrier(3);
 		Thread t = new Thread(new Runnable() {
