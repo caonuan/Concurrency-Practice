@@ -7,7 +7,11 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
-
+/**
+ * CyclicBarrier简单尝试
+ * @author Caonuan
+ *
+ */
 public class CyclicBarrierTest1 {
 	static class Worker implements Callable<String>{
 		CyclicBarrier barrier ;
@@ -47,6 +51,7 @@ public class CyclicBarrierTest1 {
 			e.printStackTrace();
 		}
 		System.out.println("全部运行完成");
+		executors.shutdown();
 	}
 	
 }
