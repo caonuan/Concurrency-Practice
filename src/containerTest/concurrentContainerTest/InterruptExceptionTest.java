@@ -80,10 +80,31 @@ public class InterruptExceptionTest {
 
 		try {
 			thread4.start();
-			System.out.println("A5");
+			System.out.println("A44");
 		} catch (Exception e) {
-			System.out.println("B5");
+			System.out.println("B44");
 			System.out.println(e.toString());
+		}
+
+		try {
+			thread1.start();
+			System.out.println("A11");
+		} catch (Exception e) {
+			System.out.println("B11");
+		}
+
+		try {
+			thread2.start();
+			System.out.println("A22");
+		} catch (Exception e) {
+			System.out.println("B22");
+		}
+
+		try {
+			thread3.start();
+			System.out.println("A33");
+		} catch (Exception e) {
+			System.out.println("B33");
 		}
 
 	}
