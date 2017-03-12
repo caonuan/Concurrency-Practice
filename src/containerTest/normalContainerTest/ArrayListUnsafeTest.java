@@ -13,13 +13,15 @@ import org.junit.Test;
  * 做size++时也读取了与线程1相同的size的值，size位置重复赋值，最后size=size+1 
  * 2.线程1做调用elementDate[size]后线程2调用elementDate[size]调用size++时，size已经被线程2设置为了size+1，因此最后size成为了size+3
  * 3.ArrayList的自动扩容受到影响
+ * 
+ * Collections.synchronnizedList(List)可获取线程安全的list
  * @author Caonuan
  *
  */
 public class ArrayListUnsafeTest {
 	public static void main(String[] args) throws InterruptedException {
 		List<Integer> list = new ArrayList<>();
-		//List<Integer> list = Collections.synchronizedList(new ArrayList<Integer>());  //线程安全的list
+		// List<Integer> list = Collections.synchronizedList(new ArrayList<Integer>()); //线程安全的list
 		AtomicInteger ai = new AtomicInteger(0);
 		Thread thread1 = new WriteThread(list, ai);
 		Thread thread2 = new WriteThread(list, ai);
@@ -28,8 +30,8 @@ public class ArrayListUnsafeTest {
 		thread1.join();
 		thread2.join();
 		System.out.println(list.size());
-		for(int i=0;i<list.size();i++){
-			System.out.print(i+"-"+list.get(i)+",");
+		for (int i = 0; i < list.size(); i++) {
+			System.out.print(i + "-" + list.get(i) + ",");
 		}
 	}
 
@@ -56,8 +58,7 @@ public class ArrayListUnsafeTest {
 	 */
 	public class ArrayListInThread implements Runnable {
 		List<String> list1 = new ArrayList<String>();// not thread safe
-		// List<String> list1 = Collections.synchronizedList(new
-		// ArrayList<String>());// thread safe
+		// List<String> list1 = Collections.synchronizedList(new  ArrayList<String>());// thread safe
 
 		@Override
 		public void run() {
@@ -87,12 +88,13 @@ public class ArrayListUnsafeTest {
 		System.out.println(t.list1.size()); // it should be 10000 if thread safe
 											// collection is used.
 	}
-	
+
 	@Test
-	public void arrayListAutoGrow(){
-		int a=10;
-		for(int i=0;i<10;i++){
-			a=a+(a>>1);
-			System.out.print(a+",");}
+	public void arrayListAutoGrow() {
+		int a = 10;
+		for (int i = 0; i < 10; i++) {
+			a = a + (a >> 1);
+			System.out.print(a + ",");
+		}
 	}
 }
