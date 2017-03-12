@@ -1,4 +1,4 @@
-package containerTest.concurrentContainerTest;
+package cancelAndShutdownThreadTest;
 
 /**
  * jdk 1.6:
